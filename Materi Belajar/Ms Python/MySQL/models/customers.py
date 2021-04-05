@@ -10,7 +10,7 @@ class database:
                 host = 'localhost',
                 database = 'perpustakaan',
                 user = 'root',
-                password = '4m4li409')
+                password = 'xxxx')
         except Exception as e:
             print(e)
 
