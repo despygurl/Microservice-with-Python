@@ -1,5 +1,7 @@
+# Import customers.py
 from models.customers import database
 
+# Isi database awal yang akan di-insert
 data = {
     'params':[
         {
@@ -30,21 +32,24 @@ data = {
 }
 
 
+# Fungsi untuk memanggil query insert data dan mengaplikasikannya pada mysql
 def tambahData(data):
     for param in data['params']:
         mysqldb.insertUser(**param)
     mysqldb.dataCommit()
     print('data berhasil ditambahkan')
 
+
+# Fungsi untuk memanggil query show seluruh data dan mengaplikasikannya pada mysql
 def showAll():
     mysqldb.showUsers()
     mysqldb.dataCommit()
 
+# Fungsi untuk memanggil query show data by id dan mengaplikasikannya pada mysql
 def shows_id():
     mysqldb.showUserById()
     mysqldb.dataCommit()
 
-    
 
 if __name__ == '__main__':
     mysqldb = database()
