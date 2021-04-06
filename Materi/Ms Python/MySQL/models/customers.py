@@ -10,7 +10,7 @@ class database:
                 host = 'localhost',
                 database = 'perpustakaan',
                 user = 'root',
-                password = 'xxxx')
+                password = '4m4li409')
         except Exception as e:
             print(e)
 
@@ -49,15 +49,36 @@ class database:
             cursor.execute(crud_query)
         except Exception as e:
             print(e)
+    
 
-    # Fungsi yang berisi query untuk mengubah/update data pada tabel customers by id
-    def updateUserById(self):
-        pass
+    # Fungsi yang berisi query untuk mengubah/update data pada tabel customers by id    
+    def updateUserById(self,**params):
+        try:
+            userid = params['userid']
+            values = self.restructureParams(**params['values'])
+            crud_query='update customers set {0} where userid = {1};'.format(values,userid)
+
+            cursor = self.db.cursor()
+            cursor.execute(crud_query)
+        except Exception as e:
+            print(e)
 
     # Fungsi yang berisi query untuk menghapus data pada tabel customers by id
     def deleteUserById(self):
-        pass
+        try:
+            userid = params['userid']
+            crud_query = 'delete from customers where userid = {0};'.format(userid)
+
+            cursor = self.db.cursor()
+            cursor.execute(crud_query)
+        except Exception as e:
+            print(e)
 
     # Fungsi yang berisi query untuk melakukan commit agar query yang diminta di atas dapat dijalankan
     def dataCommit(self):
         self.db.commit()
+    
+    def restructureParams(self, **data):
+        list_data = ['{0} ="{1}"'.format(item[0], item[1]) for item in data.items()]
+        result = ', '.join(list_data)
+        return result

@@ -40,6 +40,18 @@ def tambahData(data):
     print('data berhasil ditambahkan')
 
 
+def ubahData(data):
+    for param in data['params']:
+        mysqldb.updateUserById(**param)
+    mysqldb.dataCommit()
+    print('data berhasil diubah')
+
+def hapusData(data):
+    for param in data['params']:
+        mysqldb.updateUserById(**param)
+    mysqldb.dataCommit()
+    print('data berhasil dihapus')
+
 # Fungsi untuk memanggil query show seluruh data dan mengaplikasikannya pada mysql
 def showAll():
     mysqldb.showUsers()
@@ -58,7 +70,8 @@ if __name__ == '__main__':
     
     # tambahData(data)
     # showAll()
-    shows_id()
+    # shows_id()
+    ubahData(data)
 
     if mysqldb.db is not None and mysqldb.db.is_connected():
         mysqldb.db.close()
