@@ -1,5 +1,5 @@
 # Import library dan package yang dibutuhkan
-from pymongo import MongoClient
+
 from models.books import database as db
 from bson import ObjectId
 import csv
@@ -58,7 +58,7 @@ def update_id():
             "pengarang":pengarang,
             "tahun terbit":tahun_terbit,
             "genre":genre}}
-        db.updateBookById(*data)
+        db.updateBookById(data)
 
         print("\n====== Data Update ======")
         show_update = db.showBooksById(id_book)
@@ -79,13 +79,17 @@ if __name__ == '__main__':
     db = db()
 
     # add_book()
+
     # kata_kunci = input('Input kata kunci untuk pencarian judul buku: ')
     # search_books(kata_kunci)
+
     # show_books()
+
     # id_book = input('Input id buku untuk pencarian data buku: ')
-    # kunci = input("Masukkan field yang ingin diubah (nama/pengarang/tahun terbit/genre): ")
     # search_books_id(id_book)
-    # update_id()
     # delete_books_id(id_book)
+
+    update_id()
+    
 
     db.nosql_db.close()
